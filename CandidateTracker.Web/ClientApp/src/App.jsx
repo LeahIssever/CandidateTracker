@@ -7,9 +7,11 @@ import Pending from './Pages/Pending';
 import Confirmed from './Pages/Confirmed';
 import Declined from './Pages/Declined';
 import ViewCandidateDetails from './Pages/ViewCandidateDetails';
+import StatusCountsContext from './StatusCountsContext';
 
 const App = () => {
     return (
+        <StatusCountsContext>
         <Layout>
             <Routes>
                 <Route path='/' element={<Home />} />
@@ -20,6 +22,7 @@ const App = () => {
                 <Route path='/viewcandidatedetails/:id' element={<ViewCandidateDetails />} />
             </Routes>
         </Layout>
+        </StatusCountsContext>
     );
 }
 

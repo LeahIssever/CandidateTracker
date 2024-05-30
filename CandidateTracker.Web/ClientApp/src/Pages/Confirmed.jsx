@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CandidatesTable from "../components/CandidatesTable";
 
@@ -6,15 +6,19 @@ const Confirmed = () => {
 
     const [candidates, setCandidates] = useState([]);
 
-useEffect (() => {
-    const getCandidates = async () => {
-        const {data} = await axios.get("/api/candidatetracker/confirmed");
-        console.log(data);
-        setCandidates(data);
+    useEffect(() => {
+        const getCandidates = async () => {
+            const { data } = await axios.get("/api/candidatetracker/confirmed");
+            console.log(data);
+            setCandidates(data);
+        }
+        getCandidates();
+        console.log(candidates);
+    }, []);
+
+    if (!candidates) {
+        return <h1>Loading...</h1>
     }
-    getCandidates();
-    console.log(candidates);
-}, []);
 
     return (
         <div>

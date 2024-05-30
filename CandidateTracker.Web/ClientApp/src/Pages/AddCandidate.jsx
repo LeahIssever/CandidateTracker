@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useStatusCounts } from "../StatusCountsContext";
 
 const AddCandidate = () => {
 
     const navigate = useNavigate();
+
+    const {updateStatusCounts} = useStatusCounts();
 
     const [firstName, setFirstName] = useState('');    
     const [lastName, setLastName] = useState('');
@@ -14,6 +17,7 @@ const AddCandidate = () => {
 
     const onSubmitClick = async () => {
         await axios.post('/api/candidatetracker/add', { firstName, lastName, phoneNumber, email, notes });
+        updateStatusCounts();
         navigate('/');
     }
 

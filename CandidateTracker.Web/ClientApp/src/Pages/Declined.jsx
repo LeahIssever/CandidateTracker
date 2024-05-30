@@ -4,7 +4,7 @@ import CandidatesTable from "../components/CandidatesTable";
 
 const Declined = () => {
 
-    const [candidates, setCandidates] = useState([]);
+    const [candidates, setCandidates] = useState();
 
     useEffect(() => {
         const getCandidates = async () => {
@@ -14,6 +14,10 @@ const Declined = () => {
         }
         getCandidates();
     }, []);
+
+    if(!candidates) {
+        return <h1>Loading...</h1>
+    }
 
     return (
         <div>

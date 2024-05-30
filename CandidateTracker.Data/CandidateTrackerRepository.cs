@@ -40,5 +40,16 @@ namespace CandidateTracker.Data
             using var context = new CandidateTrackerDataContext(_connectionString);
             context.Database.ExecuteSqlInterpolated($"UPDATE Candidates SET Status = {status} WHERE Id = {id}");
         }
+
+        public StatusCounts GetStatusCounts()
+        {
+            using var context = new CandidateTrackerDataContext(_connectionString);
+            return new StatusCounts
+            {
+                Pending = context.Candidates.Count(c => c.Status == Status.Pending),
+                Confirmed = context.Candidates.Count(c => c.Status == Status.Confirmed),
+                Declined = context.Candidates.Count(c => c.Status == Status.Declined)
+            };
+        }
     }
 }

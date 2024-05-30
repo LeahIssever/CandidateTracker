@@ -23,14 +23,14 @@ const CandidatesTable = ({ candidates }) => {
                 </thead>
                 <tbody>
                     {candidates.map(candidate => {
-                        <tr key={candidate.id}>
+                        return (<tr key={candidate.id}>
                             <td>{candidate.firstName}</td>
                             <td>{candidate.lastName}</td>
                             <td>{candidate.phoneNumber}</td>
                             <td>{candidate.email}</td>
                             {showNotes && <td>{candidate.notes}</td>}
                         </tr>
-                    })}
+                    )})}
                 </tbody>
             </table>
         </div>

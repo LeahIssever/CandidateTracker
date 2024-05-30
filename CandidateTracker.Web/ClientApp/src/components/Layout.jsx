@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useStatusCounts } from '../StatusCountsContext';
 
 const Layout = ({ children }) => {
+
+    const { pending, confirmed, declined } = useStatusCounts().statusCounts;
     return (
         <div>
             <header>
@@ -17,9 +20,9 @@ const Layout = ({ children }) => {
                             <ul className="navbar-nav flex-grow-1">
                                 <li className="nav-item"><Link to="/" className='nav-link text-light'>Home</Link></li>
                                 <li className="nav-item"><Link to="/addcandidate" className='nav-link text-light'>Add Candidate</Link></li>
-                                <li className="nav-item"><Link to="/pending" className='nav-link text-light'>Pending</Link></li>
-                                <li className="nav-item"><Link to="/confirmed" className='nav-link text-light'>Confirmed</Link></li>
-                                <li className="nav-item"><Link to="/declined" className='nav-link text-light'>Declined</Link></li>
+                                <li className="nav-item"><Link to="/pending" className='nav-link text-light'>Pending ({pending})</Link></li>
+                                <li className="nav-item"><Link to="/confirmed" className='nav-link text-light'>Confirmed ({confirmed})</Link></li>
+                                <li className="nav-item"><Link to="/declined" className='nav-link text-light'>Declined ({declined})</Link></li>
                             </ul>
                         </div>
                     </div>
